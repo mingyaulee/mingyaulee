@@ -1,0 +1,10 @@
+﻿::deep .column .animate {
+    -webkit-transform: scale3d(.3,.3,.3);
+    transform: scale3d(.3,.3,.3);
+    transition: transform linear 0.5s;
+}
+
+    ::deep .column .animate.animate-in {
+        -webkit-transform: scale3d(1,1,1);
+        transform: scale3d(1,1,1);
+    }

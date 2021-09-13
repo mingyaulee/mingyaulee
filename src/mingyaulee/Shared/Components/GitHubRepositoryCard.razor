@@ -1,0 +1,113 @@
+﻿@using mingyaulee.Models
+
+<div class="animate box is-rounded is-align-self-stretch is-flex-grow-1 is-flex is-align-items-stretch is-flex-direction-column">
+    @if (isError)
+    {
+        <span>Unable to load project details from GitHub.</span>
+    }
+    else if (isLoading)
+    {
+        <span>Loading...</span>
+    }
+    else
+    {
+        <div class="is-flex-grow-0 pb-2">
+            <h6 class="title is-6">
+                <span class="icon-text">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>
+                        @response.Name
+                    </span>
+                </span>
+            </h6>
+        </div>
+        <div class="is-flex-grow-0 tags is-marginless">
+            @foreach (var language in languages)
+            {
+                <span class="tag @language.TagClass" title="@language.Percentage% of code">@language.Name</span>
+            }
+        </div>
+        <div class="is-flex-grow-1">
+            @response.Description
+        </div>
+        <div class="is-flex-grow-0 has-text-right">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-code-branch"></i>
+                </span>
+                <span>
+                    @response.Forks
+                </span>
+            </span>
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="far fa-star"></i>
+                </span>
+                <span>
+                    @response.Watchers
+                </span>
+            </span>
+            <a class="ml-2" href="@response.HtmlUrl" target="_blank" title="Open in new tab">
+                <i class="fas fa-external-link-alt has-text-black"></i>
+            </a>
+        </div>
+    }
+</div>
+
+
+@code {
+    bool isError;
+    bool isLoading = true;
+    GitHubRepoResponse response = new GitHubRepoResponse();
+    IEnumerable<GitHubRepoLanguage> languages = Enumerable.Empty<GitHubRepoLanguage>();
+
+    [Parameter]
+    public string Repository { get; set; }
+
+    [Inject]
+    public HttpClient HttpClient { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        try
+        {
+            var repoUrl = $"https://api.github.com/repos/{Repository}";
+            response = await HttpClient.GetFromJsonAsync<GitHubRepoResponse>(repoUrl) ?? new GitHubRepoResponse();
+            var languagesResponse = await HttpClient.GetFromJsonAsync<IDictionary<string, long>>($"{repoUrl}/languages");
+            if (languagesResponse is not null)
+            {
+                var totalCode = (decimal)languagesResponse.Sum(lang => lang.Value);
+                languages = languagesResponse.OrderByDescending(lang => lang.Value)
+                    .Select((lang, index) => new GitHubRepoLanguage()
+                    {
+                        Name = lang.Key,
+                        Percentage = Math.Round(lang.Value / totalCode * 100, 2),
+                        TagClass = index switch
+                        {
+                            0 => "is-primary",
+                            1 => "is-info",
+                            2 => "is-warning",
+                            _ => "is-dark"
+                        }
+                    });
+            }
+            isLoading = false;
+        }
+        catch
+        {
+            isError = true;
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            PageEvents.OnComponentRender();
+        }
+    }
+}

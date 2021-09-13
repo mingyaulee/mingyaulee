@@ -1,0 +1,47 @@
+﻿@using mingyaulee.Models
+
+<h3 class="title is-4">Career</h3>
+@if (isError)
+{
+    <span>Unable to load career details.</span>
+}
+else if (isLoading)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <div>
+        @foreach (var careerItem in careerItems)
+        {
+            <CareerItemCard CareerItem="careerItem" />
+        }
+    </div>
+}
+
+@code {
+    bool isError;
+    bool isLoading = true;
+    IEnumerable<CareerItem> careerItems = Enumerable.Empty<CareerItem>();
+
+    [Inject]
+    public HttpClient HttpClient { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        try
+        {
+            var response = await HttpClient.GetFromJsonAsync<Career>("./data/career.json");
+            if (response?.CareerItems is not null)
+            {
+                careerItems = response.CareerItems;
+            }
+            isLoading = false;
+        }
+        catch
+        {
+            isError = true;
+        }
+    }
+}

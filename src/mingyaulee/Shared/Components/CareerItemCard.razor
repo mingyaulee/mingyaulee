@@ -1,0 +1,71 @@
+﻿@using mingyaulee.Models
+<article class="animate message is-primary">
+    <div class="message-body content">
+        <div class="dates has-text-dark">
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="far fa-calendar-alt" />
+                </span>
+                <span>
+                    @CareerItem.From.ToString("MMMM yyyy")
+                    -
+                    @(CareerItem.IsCurrent ? "Present" : CareerItem.To.ToString("MMMM yyyy"))
+                </span>
+            </span>
+        </div>
+        <div>
+            <h5 class="title is-5">@CareerItem.Title</h5>
+        </div>
+        <div class="is-flex-grow-0 tags is-marginless">
+            @{
+                var index = 0;
+            }
+            @foreach (var tag in CareerItem.Tags)
+            {
+                var className = index++ switch
+                {
+                    0 => "is-primary",
+                    1 => "is-info",
+                    2 => "is-warning",
+                    _ => "is-dark"
+                };
+                <span class="tag @className">@tag</span>
+            }
+        </div>
+        <div>
+            @CareerItem.Company
+        </div>
+        <div>
+            <span class="icon-text">
+                <span class="icon">
+                    <i class="fas fa-map-marker-alt" />
+                </span>
+                <span>
+                    @CareerItem.City, @CareerItem.Country
+                </span>
+            </span>
+        </div>
+        <div class="has-text-justified">
+            <ul>
+                @foreach (var detail in CareerItem.Details)
+                {
+                    <li>@detail</li>
+                }
+            </ul>
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter]
+    public CareerItem CareerItem { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            PageEvents.OnComponentRender();
+        }
+    }
+}

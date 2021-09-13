@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bulma@0.9.3",
+      "destination": "wwwroot/lib/bulma",
+      "files": [
+        "css/bulma.*"
+      ]
+    },
+    {
+      "library": "font-awesome@5.15.3",
+      "destination": "wwwroot/lib/font-awesome",
+      "files": [
+        "css/*",
+        "webfonts/*"
+      ]
+    },
+    {
+      "library": "bulmaswatch@0.8.1",
+      "destination": "wwwroot/lib/bulmaswatch",
+      "files": [
+        "cosmo/bulmaswatch.min.css",
+        "cosmo/bulmaswatch.min.css.map",
+        "nuclear/bulmaswatch.min.css"
+      ]
+    },
+    {
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/lib/animate.css",
+      "files": [
+        "animate.min.css"
+      ]
+    }
+  ]
+}

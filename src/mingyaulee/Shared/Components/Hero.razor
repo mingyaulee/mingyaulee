@@ -1,0 +1,63 @@
+﻿<section id="hero" class="hero is-link is-fullheight is-fullheight-with-navbar">
+    <div class="bg-item-1 has-background-grey"></div>
+    <div class="bg-item-2 has-background-grey-darker"></div>
+    <div class="hero-body is-flex-direction-column is-align-items-stretch">
+        <div class="container scrolled-height50"></div>
+        <div class="container main is-flex-grow-0 is-flex is-flex-direction-row is-align-items-stretch">
+            <div class="scrolled-noflex"></div>
+            <div class="main is-flex is-flex-direction-column is-flex-grow-0">
+                <span class="scrolled-invisible is-flex-grow-0">Hello! I am</span>
+                <h1 class="title is-1 is-flex-grow-0">
+                    LEE MING YAU
+                </h1>
+                <h2 class="subtitle is-3 is-flex-grow-0">
+                    .Net Developer
+                </h2>
+                <div class="scrolled-visible">
+                    <a class="icon is-large hovered-flip" href="https://github.com/mingyaulee" target="_blank">
+                        <i class="fab fa-2x fa-github-square"></i>
+                    </a>
+                    <a class="icon is-large hovered-flip" href="https://linkedin.com/in/mingyaulee" target="_blank">
+                        <i class="fab fa-2x fa-linkedin"></i>
+                    </a>
+                    <a class="icon is-large hovered-flip" href="mailto:mingyau.lee@outlook.com" target="_blank">
+                        <i class="far fa-2x fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="scrolled-noflex"></div>
+        </div>
+        <div class="scrolled-noflex no-transition is-flex is-align-items-flex-end is-justify-content-center">
+            <div @onclick="ScrollDown" class="scrolled-invisible scroll-down-container is-flex is-flex-direction-column is-align-items-center">
+                <div class="chevron-container">
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                    <div class="chevron"></div>
+                </div>
+                <span class="scroll-down-container-text">Scroll down</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Inject]
+    public IJSRuntime JsRuntime { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            ((IJSInProcessRuntime)JsRuntime).InvokeVoid("initializeHeroIntersectionOberver");
+        }
+    }
+
+    void ScrollDown()
+    {
+        ((IJSInProcessRuntime)JsRuntime).InvokeVoid("window.scrollTo", new
+        {
+            top = 10
+        });
+    }
+}

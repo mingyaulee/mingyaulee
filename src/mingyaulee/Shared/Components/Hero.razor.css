@@ -1,0 +1,199 @@
+﻿.hero {
+    position: relative;
+    transition: min-height ease-out 0.4s;
+    overflow: hidden;
+}
+
+    .hero.scrolled {
+        min-height: 0;
+    }
+
+.bg-item-1 {
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    transform: rotateZ(35deg) translateY(60vh);
+    transform-origin: top right;
+    height: 60vh;
+}
+
+.bg-item-2 {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    transform: rotateZ(-35deg) translateY(-60vh);
+    transform-origin: bottom right;
+    height: 60vh;
+}
+
+.title {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.hero-body {
+    padding: 0;
+    align-items: stretch;
+}
+
+    .hero-body > .container.main {
+        padding: 60px 15px 15px;
+        transition: width ease-out 1s;
+        width: 100%;
+    }
+
+.scrolled-noflex {
+    flex: 1;
+    transition: flex cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s;
+}
+
+.scrolled-visible {
+    opacity: 0;
+    transition: opacity ease-in 0.8s;
+}
+
+.scrolled .scrolled-height50 {
+    min-height: 50vh;
+}
+
+.scrolled .scrolled-noflex {
+    flex: 0;
+}
+
+.scrolled .scrolled-invisible {
+    animation: disappear 0.8s 1 ease-out forwards;
+}
+
+@keyframes disappear {
+    0%{
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        display: none;
+    }
+}
+
+.scrolled .scrolled-visible {
+    opacity: 1;
+}
+
+.no-transition {
+    transition: none;
+}
+
+.hovered-flip > * {
+    transition: transform ease 0.6s;
+    transform: rotateY(0);
+}
+
+    .hovered-flip:hover > * {
+        transform: rotateY(360deg);
+    }
+
+        .hovered-flip:hover .fa-github-square:before {
+            content: "\f09b"; /* fa-github */
+        }
+
+        .hovered-flip:hover .fa-linkedin:before {
+            content: "\f0e1"; /* fa-linkedin-in */
+        }
+
+        .hovered-flip:hover .fa-envelope:before {
+            content: "\f2b6"; /* fa-envelope-open */
+        }
+
+.scroll-down-container {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.chevron-container {
+    position: relative;
+    width: 28px;
+    height: 66px;
+}
+
+.chevron {
+    position: absolute;
+    width: 28px;
+    height: 8px;
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+    animation: move 3s ease-out infinite;
+}
+
+    .chevron:first-child {
+        animation: move 3s ease-out 1s infinite;
+    }
+
+    .chevron:nth-child(2) {
+        animation: move 3s ease-out 2s infinite;
+    }
+
+    .chevron:before,
+    .chevron:after {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 51%;
+        background: #fff;
+    }
+
+    .chevron:before {
+        left: 0;
+        transform: skew(0deg, 30deg);
+    }
+
+    .chevron:after {
+        right: 0;
+        width: 50%;
+        transform: skew(0deg, -30deg);
+    }
+
+@keyframes move {
+    25% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 1;
+        transform: translateY(30px);
+    }
+
+    67% {
+        opacity: 1;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+    }
+}
+
+.scroll-down-container-text {
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: .25;
+    animation: pulse 2s linear alternate infinite;
+}
+
+@keyframes pulse {
+    to {
+        opacity: 1;
+    }
+}

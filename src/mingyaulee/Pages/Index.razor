@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<Hero />
+<section id="content" class="section">
+    <div class="animate-border left-animate-border yellow-shadow"></div>
+    <div class="animate-border top-animate-border yellow-shadow"></div>
+    <div class="animate-border right-animate-border yellow-shadow"></div>
+    <div class="container">
+        <AboutMe />
+        <SkillsCard />
+        <hr />
+        <h3 class="title is-4">Projects</h3>
+        <GitHubProjectCards />
+        <hr />
+        <CareerCards />
+    </div>
+</section>
+
+@code {
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            PageEvents.OnComponentRender();
+        }
+    }
+}

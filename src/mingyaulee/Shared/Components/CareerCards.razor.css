@@ -1,0 +1,9 @@
+﻿::deep .animate {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-duration: 0.8s;
+}
+
+::deep .animate.animate-in {
+    animation-name: fadeIn;
+}

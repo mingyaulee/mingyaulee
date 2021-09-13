@@ -1,0 +1,41 @@
+name: 'Publish profile'
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+          include-prerelease: true
+
+      - name: Publish
+        run: dotnet publish src/mingyaulee/mingyaulee.csproj --configuration Release --output output
+
+      - name: PowerShell
+        shell: pwsh
+        working-directory: ${{ env.GITHUB_WORKSPACE }}
+        run: |
+          $filePath = "output/wwwroot/index.html"
+          $replaceFrom = '<base href="/"'
+          $replaceTo = '<base href="/profile/"'
+          (Get-Content -Path $filePath -Raw) -Replace $replaceFrom,$replaceTo | Set-Content -Path $filePath
+          Copy-Item -Path $filePath -Destination "output/wwwroot/404.html"
+
+      - name: Deploy GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          token: ${{ secrets.PROFILE_DEPLOY_KEY }}
+          repository-name: mingyaulee/profile
+          branch: main
+          folder: output/wwwroot
+          clean: true
+          clean-exclude: README.md

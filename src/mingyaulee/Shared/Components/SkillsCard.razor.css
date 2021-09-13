@@ -1,0 +1,79 @@
+﻿.skills {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+::deep .animate .progress::-webkit-progress-value {
+    transition: transform 0.2s linear;
+    transform: translateX(-100%);
+}
+
+::deep .animate .progress::-moz-progress-bar {
+    transition: transform 0.2s linear;
+    transform: translateX(-100%);
+}
+
+::deep .animate .progress::-ms-fill {
+    transition: transform 0.2s linear;
+    transform: translateX(-100%);
+}
+
+::deep .animate .progress.delay-animation-1::-webkit-progress-value {
+    transition-delay: 0.2s;
+}
+
+::deep .animate .progress.delay-animation-1::-moz-progress-bar {
+    transition-delay: 0.2s;
+}
+
+::deep .animate .progress.delay-animation-1::-ms-fill {
+    transition-delay: 0.2s;
+}
+
+::deep .animate .progress.delay-animation-2::-webkit-progress-value {
+    transition-delay: 0.4s;
+}
+
+::deep .animate .progress.delay-animation-2::-moz-progress-bar {
+    transition-delay: 0.4s;
+}
+
+::deep .animate .progress.delay-animation-2::-ms-fill {
+    transition-delay: 0.4s;
+}
+
+::deep .animate .progress.delay-animation-3::-webkit-progress-value {
+    transition-delay: 0.6s;
+}
+
+::deep .animate .progress.delay-animation-3::-moz-progress-bar {
+    transition-delay: 0.6s;
+}
+
+::deep .animate .progress.delay-animation-3::-ms-fill {
+    transition-delay: 0.6s;
+}
+
+::deep .animate .progress.delay-animation-4::-webkit-progress-value {
+    transition-delay: 0.8s;
+}
+
+::deep .animate .progress.delay-animation-4::-moz-progress-bar {
+    transition-delay: 0.8s;
+}
+
+::deep .animate .progress.delay-animation-4::-ms-fill {
+    transition-delay: 0.8s;
+}
+
+::deep .animate.animate-in .progress::-webkit-progress-value {
+    transform: translateX(0);
+}
+
+::deep .animate.animate-in .progress::-moz-progress-bar {
+    transform: translateX(0);
+}
+
+::deep .animate.animate-in .progress::-ms-fill {
+    transform: translateX(0);
+}

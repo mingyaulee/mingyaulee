@@ -1,0 +1,60 @@
+﻿@using mingyaulee.Models
+
+@if (isError)
+{
+    <span>Unable to load career details.</span>
+}
+else if (isLoading)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <div class="skills card mb-5">
+        <div class="card-content">
+            <h3 class="title is-4">Skills</h3>
+            <div class="animate content">
+                @foreach (var skillItem in skillItems)
+                {
+                    <SkillBar SkillItem="skillItem" />
+                } 
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    bool isError;
+    bool isLoading = true;
+    IEnumerable<SkillItem> skillItems = Enumerable.Empty<SkillItem>();
+
+    [Inject]
+    public HttpClient HttpClient { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        try
+        {
+            var response = await HttpClient.GetFromJsonAsync<Skills>("./data/skills.json");
+            if (response?.SkillItems is not null)
+            {
+                skillItems = response.SkillItems;
+            }
+            isLoading = false;
+        }
+        catch
+        {
+            isError = true;
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            PageEvents.OnComponentRender();
+        }
+    }
+}

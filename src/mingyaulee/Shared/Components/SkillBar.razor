@@ -1,0 +1,30 @@
+﻿@using mingyaulee.Models 
+
+<div class="mb-3">
+    <strong>@SkillItem.Name</strong>
+    <div class="columns mx-0 is-flex">
+        @for (var i = 0; i < numberOfColumns; i++)
+        {
+            <div class="column">
+                <progress class="progress is-info delay-animation-@i" value="@(Math.Min(maxPerColumn, SkillItem.Percentage - i * maxPerColumn))" max="@maxPerColumn"></progress>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    const int numberOfColumns = 5;
+    int maxPerColumn = 100 / numberOfColumns;
+
+    [Parameter]
+    public SkillItem SkillItem { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            PageEvents.OnComponentRender();
+        }
+    }
+}

@@ -1,0 +1,7 @@
+﻿nav.navbar {
+    transition: background-color ease-out 0.4s;
+}
+
+body.hero-shown nav.navbar {
+    background-color: transparent;
+}

@@ -1,0 +1,28 @@
+{
+  "skillItems": [
+    {
+      "name": "C#",
+      "percentage": 100
+    },
+    {
+      "name": "JavaScript",
+      "percentage": 100
+    },
+    {
+      "name": "HTML",
+      "percentage": 80
+    },
+    {
+      "name": "CSS",
+      "percentage": 80
+    },
+    {
+      "name": "PowerShell",
+      "percentage": 60
+    },
+    {
+      "name": "MSSQL",
+      "percentage": 60
+    }
+  ]
+}

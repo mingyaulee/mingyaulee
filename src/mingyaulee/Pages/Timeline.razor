@@ -1,0 +1,93 @@
+﻿@page "/timeline"
+@using BlazorTimeline
+
+<div class="timeline-container">
+
+	<BlazorTimeline.Timeline Title="My timeline"
+							 TitleBgColor="#d9ff00"
+							 TitleColor="#000000"
+							 ItemPositionOption="@ItemPositionOption.AutoAltering">
+
+		<TimelineItem Time="2009">
+			<IconContent>
+				<i class="fas fa-flag"></i>
+			</IconContent>
+			<ChildContent>
+				Started learning to code in JavaScript.
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="2011">
+			<IconContent>
+				<i class="fas fa-book-open"></i>
+			</IconContent>
+			<ChildContent>
+				Used my web development skills create an offline static page to show my timetable for classes in my university.
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="December 2014">
+			<IconContent>
+				<i class="fas fa-graduation-cap"></i>
+			</IconContent>
+			<ChildContent>
+				Graduated with a bachelor's degree in Actuarial Science.
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="July 2015">
+			<IconContent>
+				<i class="fas fa-briefcase"></i>
+			</IconContent>
+			<ChildContent>
+				<div class="content">
+					<ul>
+						<li>
+							Accepted my first job offer in the IT industry.
+						</li>
+						<li>
+							Started learning C# in .Net framework.
+						</li>
+					</ul>
+				</div>
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="February 2021">
+			<IconContent>
+				<i class="fas fa-star"></i>
+			</IconContent>
+			<ChildContent>
+				Started contributing to open source on GitHub.
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="March 2021">
+			<IconContent>
+				<i class="fab fa-github"></i>
+			</IconContent>
+			<ChildContent>
+				<div class="content">
+					Published my first two open source projects to GitHub.
+					<ol>
+						<li><a href="https://github.com/mingyaulee/Blazor.BrowserExtension" class="is-link">Blazor.BrowserExtension</a></li>
+						<li><a href="https://github.com/mingyaulee/WebExtensions.Net" class="is-link">WebExtensions.Net</a></li>
+					</ol>
+				</div>
+			</ChildContent>
+		</TimelineItem>
+
+	</BlazorTimeline.Timeline>
+
+</div>
+
+@code {
+	protected override void OnAfterRender(bool firstRender)
+	{
+		base.OnAfterRender(firstRender);
+		if (firstRender)
+		{
+			PageEvents.OnComponentRender();
+		}
+	}
+}

@@ -1,0 +1,17 @@
+﻿.progress {
+    height: .4rem;
+}
+
+.column {
+    padding-left: 3px;
+    padding-right: 3px;
+    overflow: hidden;
+}
+
+    .column:first-child {
+        padding-left: 0;
+    }
+
+    .column:last-child {
+        padding-right: 0;
+    }

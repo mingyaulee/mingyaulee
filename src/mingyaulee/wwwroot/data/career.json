@@ -1,0 +1,82 @@
+{
+  "careerItems": [
+    {
+      "from": "2019-10-01",
+      "isCurrent": true,
+      "title": "Senior .Net Developer",
+      "company": "InScale (Client: SEB Life & Pension)",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "tags": [ "C#" ],
+      "details": [
+        "Implemented service for insurance premium calculations based on calculation formulae provided by the actuaries.",
+        "Developing new features on a .Net plugin based architecture framework to provide the infrastructure required for fast development within the bank's technology ecosystem (e.g. events with Kafka and logging with Splunk are part of the framework).",
+        "Managing CI/CD pipeline in Azure DevOps and deployment in RedHat OpenShift."
+      ]
+    },
+    {
+      "from": "2019-10-01",
+      "to": "2020-08-01",
+      "title": "Developer",
+      "company": "Sitecore",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "tags": [ "C#", "JavaScript", "Sitecore" ],
+      "details": [
+        "Development of Sitecore Commerce Experience Accelerator (Commerce XA), which is built on top of Sitecore, Sitecore Experience Accelerator (SXA) and Sitecore Commerce Engine.",
+        "Created small reusable and configurable components for storefront, which can be customized and extended by the developers from our customers or partners.",
+        "Learned to use Gulp Babel to transpile ES6 JavaScript into ES5 for browser compatibility, and Gulp EsLint for syntax checking.",
+        "Improved UI automation tests (C# Selenium) reliability and speed by 50%."
+      ]
+    },
+    {
+      "from": "2017-02-01",
+      "to": "2019-08-01",
+      "title": "Senior Web Applications Developer",
+      "company": "Sterling RISQ",
+      "city": "Subang Jaya",
+      "country": "Malaysia",
+      "tags": [ "C#", "JavaScript", "Kendo UI" ],
+      "details": [
+        "Built an ASP.Net MVC 5 background screening application with two front-end UI/clients to replace the legacy application and automate manual operation processes.",
+        "Created boilerplate codes for Kendo UI and Metronic Admin.",
+        "Multilanguage support with Editor Mode for Admin users.",
+        "Dynamic questionnaire for conditional data collection.",
+        "Adobe Sign API integration for signing documents.",
+        "SAML SSO Integration via Auth0 and Amazon Cognito.",
+        "Developed features such as push notification, file download preview, automatic time zone conversion, secure encryption for URL and hidden form fields.",
+        "Lead API project for integration with client's recruitment system."
+      ]
+    },
+    {
+      "from": "2016-05-01",
+      "to": "2017-01-01",
+      "title": "Application Developer",
+      "company": "Teledirect Telecommerce (TDCX)",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "tags": [ "C#", "VB.Net", "VB6" ],
+      "details": [
+        "Developed an ASP.Net MVC 5 customer service system with SSO to Knowledge Base and QA system.",
+        "Worked on multiple desktop applications integrated with Windows AD authentication and Aspect SIP phone and implemented application level encryption for sensitive information stored in the database.",
+        "Developed web services on the Staff Portal including authentication to be consumed by other applications.",
+        "Improved integration between recruiting and HR applications."
+      ]
+    },
+    {
+      "from": "2015-07-01",
+      "to": "2016-04-01",
+      "title": "Technical Consultant",
+      "company": "atQuest Group",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "tags": [ "C#", "ASP.Net MVC 5", "jQuery", "Bootstrap" ],
+      "details": [
+        "Implemented lazy loading of contents to improve user experience.",
+        "Developed an algorithm to calculate rendered content sizes in grid layout dynamically.",
+        "Developed a user-friendly article HTML editor like Medium.com, with drag and drop image uploading and multiple article layout picker.",
+        "Integrated Facebook Login and search powered by Microsoft Azure Search."
+      ]
+    }
+  ]
+}

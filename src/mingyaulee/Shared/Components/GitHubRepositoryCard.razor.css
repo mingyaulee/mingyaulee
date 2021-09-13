@@ -1,0 +1,9 @@
+﻿a > i {
+    transform: scale(1);
+    transform-origin: bottom left;
+    transition: transform linear 0.4s;
+}
+
+.box:hover a > i {
+    transform: scale(1.2);
+}
