@@ -2,3 +2,13 @@
     font-size: 1.5em;
     color: #000000;
 }
+
+@media screen and (max-width: 768px) {
+    ::deep #timeline .timeline-item .timeline-content {
+        width: calc(100% - 40px);
+    }
+
+        ::deep #timeline .timeline-item .timeline-content[b-brzhsl6bgj]:before {
+            left: 40px;
+        }
+}

@@ -1,10 +1,9 @@
 ﻿@page "/timeline"
 @using BlazorTimeline
 
-<div class="timeline-container">
+<div class="body-container timeline-container">
 
-	<BlazorTimeline.Timeline Title="My timeline"
-							 TitleBgColor="#d9ff00"
+	<BlazorTimeline.Timeline TitleBgColor="#d9ff00"
 							 TitleColor="#000000"
 							 ItemPositionOption="@ItemPositionOption.AutoAltering">
 
@@ -73,6 +72,34 @@
 						<li><a href="https://github.com/mingyaulee/Blazor.BrowserExtension" class="is-link">Blazor.BrowserExtension</a></li>
 						<li><a href="https://github.com/mingyaulee/WebExtensions.Net" class="is-link">WebExtensions.Net</a></li>
 					</ol>
+				</div>
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="August 2021">
+			<IconContent>
+				<i class="fab fa-github"></i>
+			</IconContent>
+			<ChildContent>
+				<div class="content">
+					Created a new open source project.
+					<ul>
+						<li><a href="https://github.com/mingyaulee/JsBind.Net" class="is-link">JsBind.Net</a></li>
+					</ul>
+				</div>
+			</ChildContent>
+		</TimelineItem>
+
+		<TimelineItem Time="September 2021">
+			<IconContent>
+				<i class="fab fa-github"></i>
+			</IconContent>
+			<ChildContent>
+				<div class="content">
+					Created a new open source project.
+					<ul>
+						<li><a href="https://github.com/mingyaulee/Blazor.Node" class="is-link">Blazor.Node</a></li>
+					</ul>
 				</div>
 			</ChildContent>
 		</TimelineItem>

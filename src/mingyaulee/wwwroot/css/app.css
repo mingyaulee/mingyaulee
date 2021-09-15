@@ -35,6 +35,10 @@
     max-width: 900px;
 }
 
+.body-container {
+    padding-top: 52px;
+}
+
 /* Missing CSS from bulmaswatch */
 .is-flex-grow-0 {
     flex-grow: 0 !important;
@@ -64,12 +68,16 @@
     justify-content: center !important;
 }
 
-.is-align-self-stretch  {
+.is-align-self-stretch {
     align-self: stretch !important;
 }
 
 .mb-5 {
     margin-bottom: 1.5rem !important;
+}
+
+.ml-2 {
+    margin-left: 0.5rem !important;
 }
 
 /*Loader*/

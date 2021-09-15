@@ -7,7 +7,7 @@
             <div class="scrolled-noflex"></div>
             <div class="main is-flex is-flex-direction-column is-flex-grow-0">
                 <span class="scrolled-invisible is-flex-grow-0">Hello! I am</span>
-                <h1 class="title is-1 is-flex-grow-0">
+                <h1 class="title is-1 is-size-3-mobile is-flex-grow-0">
                     LEE MING YAU
                 </h1>
                 <h2 class="subtitle is-3 is-flex-grow-0">
@@ -55,9 +55,6 @@
 
     void ScrollDown()
     {
-        ((IJSInProcessRuntime)JsRuntime).InvokeVoid("window.scrollTo", new
-        {
-            top = 10
-        });
+        ((IJSInProcessRuntime)JsRuntime).InvokeVoid("window.scrollHero");
     }
 }
