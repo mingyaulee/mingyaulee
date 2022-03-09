@@ -1,0 +1,166 @@
+@using mingyaulee.Models
+@layout NoLayout
+@page "/resume.html"
+
+<div class="page">
+    <div class="header flex">
+        <h1 class="hidden">Information</h1>
+        <div class="flex-full flex name">
+            <h2 class="hidden">Name</h2>
+            <span class="header-name">Lee, Ming Yau</span>
+        </div>
+        <div class="header-item flex-6 flex">
+            <i class="fas fa-envelope"></i>
+            <h2 class="hidden">Email</h2>
+            <a href="mailto:@email">@email</a>
+        </div>
+        <div class="header-item flex-6 flex">
+            <i class="fas fa-phone"></i>
+            <h2 class="hidden">Phone</h2>
+            <a href="tel:@phoneNumber">@phoneNumberFormatted</a>
+        </div>
+        <div class="header-item flex-6 flex">
+            <i class="fab fa-github"></i>
+            <h2 class="hidden">GitHub</h2>
+            <a href="https://github.com/mingyaulee">github.com/mingyaulee</a>
+        </div>
+        <div class="header-item flex-6 flex">
+            <i class="fab fa-linkedin"></i>
+            <h2 class="hidden">LinkedIn</h2>
+            <a href="https://linkedin.com/in/mingyaulee">linkedin.com/in/mingyaulee</a>
+        </div>
+    </div>
+
+    <div class="languages-skills section-top-padding flex">
+        <div class="languages flex-4">
+            <h1 class="section-title">
+                <i class="fas fa-comments"></i>
+                Languages
+            </h1>
+            <div class="language-item">
+                <h2 class="title">English</h2>
+                <span class="content">Fluent</span>
+            </div>
+            <div class="language-item">
+                <h2 class="title">Chinese</h2>
+                <span class="content">Fluent</span>
+            </div>
+            <div class="language-item">
+                <h2 class="title">Malay</h2>
+                <span class="content">Intermediate</span>
+            </div>
+        </div>
+        <div class="skills flex-fill">
+            <h1 class="section-title">
+                <i class="fas fa-code"></i>
+                Skills
+            </h1>
+            <div class="flex justified">
+                @foreach (var skillItem in skillItems)
+                {
+                    var skillLevel = skillItem.Percentage / 20;
+                    <div class="flex-5">
+                        <h2 class="title">@skillItem.Name</h2>
+                        <span class="skill skill-@skillLevel"></span>
+                        <span class="hidden">@(skillLevel == 5 ? "Expert" : skillLevel == 4 ? "Proficient" : "Intermediate")</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="work section-top-padding">
+        <h1 class="section-title">
+            <i class="fas fa-briefcase"></i>
+            Work Experience
+        </h1>
+        @for (careerItemIndex = 0; careerItemIndex < Math.Min(3, careerItems.Count); careerItemIndex++)
+        {
+            <ResumeWorkItem CareerItem=careerItems[careerItemIndex] />
+        }
+    </div>
+</div>
+<div class="page">
+    <div class="work">
+        @for (; careerItemIndex < careerItems.Count; careerItemIndex++)
+        {
+            <ResumeWorkItem CareerItem=careerItems[careerItemIndex] />
+        }
+    </div>
+
+    <div class="education section-top-padding">
+        <h1 class="section-title">
+            <i class="fas fa-graduation-cap"></i>
+            Education
+        </h1>
+        <div>
+            <h2 class="title">Bachelor of Science (Honours), Actuarial Science, with Merit</h2>
+            <span class="content block">Universiti Tunku Abdul Rahman (UTAR)</span>
+            <span class="content flex">
+                <span class="hidden">Location:</span>
+                <span>
+                    Kuala Lumpur, Malaysia
+                </span>
+            </span>
+            <span class="flex">
+                <span class="hidden">Start Date:</span>
+                <span class="content date">
+                    01/2012
+                </span>
+                <span class="content date date-separator">
+                    -
+                </span>
+                <span class="hidden">End Date:</span>
+                <span class="content date">
+                    12/2014
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="certifications section-top-padding">
+        <h1 class="section-title">
+            <i class="fas fa-certificate"></i>
+            Certifications
+        </h1>
+        <div>
+            <h2 class="title">Sitecore Experience Solution 9 Developer Certification</h2>
+            <span class="content block">Sitecore</span>
+            <span class="content block date">07/2020</span>
+        </div>
+    </div>
+</div>
+
+<div class="toolbar">
+    <div class="toolbar-icon" onclick="window.toggleShowMargin()">
+        <i class="fas fa-border-none"></i>
+    </div>
+</div>
+
+@code {
+    const string email = "";
+    const string phoneNumberFormatted = "";
+    string phoneNumber = phoneNumberFormatted.Replace('+', ' ').Replace('-', ' ').Replace(" ", string.Empty);
+    int careerItemIndex;
+    List<CareerItem> careerItems = new();
+    List<SkillItem> skillItems = new();
+
+    [Inject]
+    public HttpClient HttpClient { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var career = await HttpClient.GetFromJsonAsync<Career>("./data/career.json");
+        var skills = await HttpClient.GetFromJsonAsync<Skills>("./data/skills.json");
+        if (career?.CareerItems is not null)
+        {
+            careerItems = career.CareerItems.ToList();
+        }
+
+        if (skills?.SkillItems is not null)
+        {
+            skillItems = skills.SkillItems.ToList();
+        }
+    }
+}

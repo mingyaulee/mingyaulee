@@ -1,0 +1,311 @@
+html {
+    margin: 0;
+    --page-vertical-padding: 20mm;
+    --page-horizontal-padding: 20mm;
+}
+
+html,
+body {
+    padding: 0;
+}
+
+.page {
+    overflow: visible;
+    margin-bottom: 10px;
+    position: relative;
+    padding: var(--page-vertical-padding) var(--page-horizontal-padding);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media print {
+    html,
+    body,
+    .page {
+        margin: 0;
+    }
+
+    .page {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media screen {
+    html {
+        background-color: #ccc;
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    body {
+        margin: 20px auto;
+    }
+
+    .page {
+        background-color: #fff;
+    }
+
+    .show-margin .page::after {
+        content: ' ';
+        position: absolute;
+        border: 1px dashed #ccc;
+        z-index: 1;
+        top: var(--page-vertical-padding);
+        bottom: var(--page-vertical-padding);
+        left: var(--page-horizontal-padding);
+        right: var(--page-horizontal-padding);
+    }
+}
+
+@page {
+    margin: 0;
+}
+
+@media screen {
+    body.a4 {
+        width: 210mm;
+    }
+
+        body.a4 .page {
+            width: 210mm;
+            height: 297mm;
+        }
+}
+
+
+/* Toolbar styling */
+
+.toolbar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity linear .4s;
+}
+
+.toolbar-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #1473e6;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mouse-moving .toolbar {
+    opacity: 1;
+}
+
+@media print {
+    .toolbar {
+        display: none;
+    }
+}
+
+/* General Styling */
+html {
+    font-family: "Segoe UI";
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding-inline-start: 20px;
+}
+
+i,
+i.fa,
+i.fas,
+i.fab {
+    line-height: initial;
+    vertical-align: middle;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+
+/* Utilities */
+.hidden {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.flex {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.flex-full {
+    flex: 0 0 100%;
+}
+
+.flex-6 {
+    flex: 0 0 50%;
+}
+
+.flex-5 {
+    flex: 0 0 41.66%;
+}
+
+.flex-4 {
+    flex: 0 0 33.33%;
+}
+
+.flex-3 {
+    flex: 0 0 25%;
+}
+
+.flex-fill {
+    flex: 1 0 0;
+}
+
+.flex-content-end {
+    justify-content: flex-end;
+    place-content: flex-end;
+}
+
+.justified {
+    justify-content: space-between;
+}
+
+.has-text-justified {
+    text-align: justify;
+}
+
+.block {
+    display: block;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Component Styling */
+.header {
+    margin: -20mm -20mm 0 -20mm;
+    padding: 20mm 20mm 6mm 20mm;
+    background-color: #0091ea;
+    color: #fff;
+}
+
+.header-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.header-item {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+    .header-item i {
+        font-size: 1.2rem;
+        width: 20px;
+    }
+
+        .header-item i.fa-github,
+        .header-item i.fa-linkedin {
+            font-size: 1.3rem;
+        }
+
+.section-top-padding {
+    padding-top: 20px;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: block;
+    padding-bottom: 8px;
+}
+
+    .section-title i {
+        padding-bottom: 2px;
+    }
+
+.title {
+    font-size: 1.2rem;
+    color: #0064b7;
+    font-weight: 700;
+    display: block;
+}
+
+.icon-text .icon {
+    padding: 0 6px 0 2px;
+}
+
+.date {
+    font-weight: 600;
+}
+
+.date-separator {
+    padding: 0 2px;
+}
+
+.languages .content {
+    font-size: 1.1rem;
+}
+
+.language-item {
+    margin-bottom: 6px;
+}
+
+    .language-item:last-child {
+        margin-bottom: 0;
+    }
+
+.skill {
+    display: block;
+    height: 4px;
+    background-color: #64c1ff;
+    position: relative;
+    top: 4px;
+}
+
+.skill-5 {
+    width: 100%;
+}
+
+.skill-4 {
+    width: 75%;
+}
+
+.skill-3 {
+    width: 50%;
+}
+
+.work-item {
+    margin-bottom: 12px;
+}
+
+    .work-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .work-item ul {
+        padding-top: 6px;
+    }

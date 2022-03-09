@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Resume</title>
+    <base href="/" />
+    <link href="lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="css/resume.css" rel="stylesheet" />
+</head>
+
+<body id="app" class="a4">
+    <h1>Loading...</h1>
+    <script>
+        let removeClassTimeout = 0;
+        const showToolbar = function () {
+            document.body.classList.add("mouse-moving");
+            clearTimeout(removeClassTimeout);
+            removeClassTimeout = setTimeout(function () {
+                document.body.classList.remove("mouse-moving");
+            }, 2000);
+        };
+        document.addEventListener("mousemove", showToolbar);
+        document.addEventListener("mousedown", showToolbar);
+
+        window.toggleShowMargin = function() {
+            if (document.body.classList.contains("show-margin")) {
+                document.body.classList.remove("show-margin");
+            } else {
+                document.body.classList.add("show-margin");
+            }
+        };
+    </script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

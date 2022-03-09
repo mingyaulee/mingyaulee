@@ -24,11 +24,14 @@ jobs:
         shell: pwsh
         working-directory: ${{ env.GITHUB_WORKSPACE }}
         run: |
-          $filePath = "output/wwwroot/index.html"
           $replaceFrom = '<base href="/"'
           $replaceTo = '<base href="/profile/"'
+          $filePath = "output/wwwroot/index.html"
           (Get-Content -Path $filePath -Raw) -Replace $replaceFrom,$replaceTo | Set-Content -Path $filePath
           Copy-Item -Path $filePath -Destination "output/wwwroot/404.html"
+          
+          $filePath = "output/wwwroot/resume.html"
+          (Get-Content -Path $filePath -Raw) -Replace $replaceFrom,$replaceTo | Set-Content -Path $filePath
 
       - name: Deploy GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5

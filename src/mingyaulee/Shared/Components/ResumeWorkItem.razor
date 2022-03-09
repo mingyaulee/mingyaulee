@@ -1,0 +1,47 @@
+﻿@using mingyaulee.Models
+<div class="work-item">
+    <h2 class="title flex">
+        <span class="hidden">Title</span>
+        @CareerItem.Title
+    </h2>
+    <div class="flex">
+        <span class="hidden">Company</span>
+        <span class="content">
+            @CareerItem.Company
+        </span>
+    </div>
+    <div class="flex">
+        <span class="flex flex-fill">
+            <span class="hidden">Location:</span>
+            <span class="content">
+                @CareerItem.City, @CareerItem.Country
+            </span>
+        </span>
+        <span class="flex flex-3 flex-content-end">
+            <span class="hidden">Start Date:</span>
+            <span class="content date">
+                @CareerItem.From.ToString("MM/yyyy")
+            </span>
+            <span class="content date date-separator">
+            -
+            </span>
+            <span class="hidden">End Date:</span>
+            <span class="content date">
+                @(CareerItem.IsCurrent ? "Present" : CareerItem.To.ToString("MM/yyyy"))
+            </span>
+        </span>
+    </div>
+    <div class="has-text-justified">
+        <ul>
+            @foreach (var detail in CareerItem.Details)
+            {
+                <li>@detail</li>
+            }
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public CareerItem CareerItem { get; set; }
+}
